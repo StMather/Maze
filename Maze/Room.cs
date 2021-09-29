@@ -25,6 +25,12 @@ namespace Maze
         }
         public void Display()
         {
+            /*example room
+             ***
+             * |
+             *-*
+             end
+             */
 
         }
 

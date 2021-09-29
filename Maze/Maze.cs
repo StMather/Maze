@@ -8,16 +8,27 @@ namespace Maze
 {
     public class Maze
     {
-        int horizontalStart = 0;
-        int verticalStart = 0;
-        Room[,] myMaze;
+        int horizontalStart = 1;
+        int verticalStart = 1;
+        bool[,] myMaze;
         public Maze()
-         {
-            Room[,] newMaze = new Room[4, 4] {
-            { new Room(false, true, false, true, false), new Room(false, true, false, true, false), new Room(false, true, false, true, false), new Room(false, true, false, true, false) },
-            { new Room(false, true, false, true, false), new Room(false, true, false, true, false), new Room(false, true, false, true, false), new Room(false, true, false, true, false) },
-            { new Room(false, true, false, true, false), new Room(false, true, false, true, false), new Room(false, true, false, true, false), new Room(false, true, false, true, false)},
-            { new Room(false, true, false, true, false), new Room(false, true, false, true, false), new Room(false, true, false, true, false), new Room(false, true, false, true, false)}};
+        {
+            //    myMaze = new Room[4, 4] {
+            //    { new Room(false, true, false, true, false), new Room(false, true, true, true, false), new Room(false, true, false, true, false), new Room(false, true, false, false, false) },
+            //    { new Room(false, true, false, true, false), new Room(false, true, false, true, false), new Room(false, true, false, true, false), new Room(false, true, false, false, false) },
+            //    { new Room(false, true, false, true, false), new Room(false, true, false, true, false), new Room(false, true, false, true, false), new Room(false, true, false, false, false)},
+            //    { new Room(false, false, false, true, false), new Room(false, false, false, true, false), new Room(false, false, false, true, false), new Room(false, false, false, false, false)}};
+
+
+            /*string[,] grid ={   { "|", "|", "|", "|"},
+                                { "|", "", "|", "" },
+                                { "|", "", "","" },
+                                { "|", "|","|", "" } }*/
+            myMaze = new bool[4,4]{  
+                            { false,false,false,false},
+                            { false,true,false,false},
+                            { false,true,true,false},
+                            { false,false,false,false}};
         }
     private void GenerateMaze()//Add a random maze generator or pick from list of pre made mazes
         {
@@ -28,28 +39,32 @@ namespace Maze
         {
             return false;
         }
-        private void DisplayMaze()//walk trhough maze and display rooms in the maze
+        public void DisplayMaze()//walk trhough maze and display rooms in the maze
         {
             /*example room
-             ***
-             * |
-             *-*
-             *Room,romm,room,room 1st row
-             *Room,romm,room,room second row
-             */
-            /*{
-            { 1, 0, 0, 0 },
-            { 1, 1, 0, 1 },
-            { 0, 1, 0, 0 },
-            { 1, 1, 1, 1 } }
+             ||||  XXXX
+             | ||  X XX
+             |O |  XO X 
+             ||||  XXXX
             */
-            int N = myMaze.Length;
+            int N = myMaze.GetLength(0);
             for (int i = 0; i < N; i++)
             {
                 for(int j = 0; j < N; j++)
                 {
-                    myMaze[i,j].Display();
+                    if(myMaze[i,j])
+                    {
+                        Console.Write(" ");
+                        //for player location, need logic
+                        //Console.Write("O");
+                    }
+                    else
+                    {
+                        Console.Write("|");
+                    }
+            
                 }
+                Console.WriteLine();
             }
 
         }
