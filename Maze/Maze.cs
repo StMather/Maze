@@ -10,7 +10,7 @@ namespace Maze
     {
         int horizontalStart = 1;
         int verticalStart = 1;
-        bool[,] myMaze;
+        Room[,] myMaze;
         public Maze()
         {
             //    myMaze = new Room[4, 4] {
@@ -24,13 +24,13 @@ namespace Maze
                                 { "|", "", "|", "" },
                                 { "|", "", "","" },
                                 { "|", "|","|", "" } }*/
-            myMaze = new bool[4,4]{  
-                            { false,false,false,false},
-                            { false,true,false,false},
-                            { false,true,true,false},
-                            { false,false,false,false}};
+            myMaze = new Room[4, 4]{
+                            { new Room(false), new Room(false), new Room(false),new Room(false)},
+                            { new Room(false), new Room(true), new Room(false),new Room(false)},
+                            { new Room(false), new Room(true), new Room(true),new Room(false)},
+                            { new Room(false), new Room(false), new Room(false),new Room(false)}};
         }
-    private void GenerateMaze()//Add a random maze generator or pick from list of pre made mazes
+     private void GenerateMaze()//Add a random maze generator or pick from list of pre made mazes
         {
             throw new NotImplementedException();
         }
@@ -52,7 +52,7 @@ namespace Maze
             {
                 for(int j = 0; j < N; j++)
                 {
-                    if(myMaze[i,j])
+                    if(myMaze[i,j].IsDoor())
                     {
                         Console.Write(" ");
                         //for player location, need logic
