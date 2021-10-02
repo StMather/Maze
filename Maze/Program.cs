@@ -6,9 +6,8 @@ namespace Maze
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Maze newMaze = new Maze();
-            newMaze.DisplayMaze();
+            Game newGame = new Game();
+            newGame.MainMenu();
         }
     }
 }

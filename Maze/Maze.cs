@@ -30,9 +30,28 @@ namespace Maze
                             { new Room(false), new Room(true), new Room(true),new Room(false)},
                             { new Room(false), new Room(false), new Room(false),new Room(false)}};
         }
-     private void GenerateMaze()//Add a random maze generator or pick from list of pre made mazes
+        public Maze(int size)
         {
-            throw new NotImplementedException();
+            Room[,] mazeBuild = new Room[size, size];
+            Random rand = new Random();
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    int chanceOfDoor = rand.Next(1, 101);//do some randization 60-70%
+                    if (chanceOfDoor <= 60 && i > 0 && i < size-1 && j > 0 && j < size-1)//i's and j's build exterior wall
+                    {
+
+                        mazeBuild[i, j] = new Room(true);//door
+                    }
+                    else
+                    {
+                        mazeBuild[i, j] = new Room(false);//wall
+                    }
+
+                }
+            }
+            myMaze = mazeBuild;
         }
 
         private bool IsSolveable()//check every path in the maze untill an exit is found(return true) or not(return false)
@@ -52,17 +71,7 @@ namespace Maze
             {
                 for(int j = 0; j < N; j++)
                 {
-                    if(myMaze[i,j].IsDoor())
-                    {
-                        Console.Write(" ");
-                        //for player location, need logic
-                        //Console.Write("O");
-                    }
-                    else
-                    {
-                        Console.Write("|");
-                    }
-            
+                    myMaze[i, j].Display();
                 }
                 Console.WriteLine();
             }
