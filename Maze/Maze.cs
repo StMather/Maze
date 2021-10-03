@@ -11,7 +11,7 @@ namespace Maze
         int horizontalStart = 1;
         int verticalStart = 1;
         Room[,] myMaze;
-        public Maze()
+        public Maze()//default maze
         {
             //    myMaze = new Room[4, 4] {
             //    { new Room(false, true, false, true, false), new Room(false, true, true, true, false), new Room(false, true, false, true, false), new Room(false, true, false, false, false) },
@@ -32,13 +32,17 @@ namespace Maze
         }
         public Maze(int size)
         {
+            if(size <0)
+            {
+                return;
+            }
             Room[,] mazeBuild = new Room[size, size];
             Random rand = new Random();
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)
                 {
-                    int chanceOfDoor = rand.Next(1, 101);//do some randization 60-70%
+                    int chanceOfDoor = rand.Next(1, 101);
                     if (chanceOfDoor <= 60 && i > 0 && i < size-1 && j > 0 && j < size-1)//i's and j's build exterior wall
                     {
 

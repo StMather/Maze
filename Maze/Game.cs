@@ -27,6 +27,10 @@ namespace Maze
                     case 2://add user input
                         Console.WriteLine("Enter the size of your maze, exterior wall included");
                         Int32.TryParse(Console.ReadLine(), out choice);
+                        if(choice < 0)
+                        {
+                            break;
+                        }
                         Maze mazeSized =new Maze(choice);
                         MazeGame(mazeSized);
                         break;
