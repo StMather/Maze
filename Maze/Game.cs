@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Console;
 
 namespace Maze
 {
@@ -39,14 +40,38 @@ namespace Maze
         }
         public void MazeGame(Maze mazeIn)
         {
-            while(true){
+            Player myPlayer = new Player(0, 2);
+            while (true){
 
-                mazeIn.DisplayMaze();
+                /*mazeIn.DisplayMaze();
                 //ask user for movment
                 //pass moment to player to verify and action
                 //if at exit Break 
-                break;
+                break;*/
+                // Draw everything
+                DrawFrame();
+                mazeIn.DisplayMaze();
+                myPlayer.Draw();
+                // Check for player input from the keyboard and move the player
+                myPlayer.HandlePlayerInput(mazeIn);
+                //check if the player has reached the exit and end the game 
+                //string elementAtplayerPos = mazeIn.GetElementAt(X,Y);
+                int myX = myPlayer.GetX();
+                int myY = myPlayer.GetY();
+                if(mazeIn.myMaze[myY, myX].IsExit())
+                {
+                    break;
+                }
+                //allows the console to render display.
+                System.Threading.Thread.Sleep(20);
             }
+            Clear();
+        }
+        private void DrawFrame()
+        {
+            Clear();
+            //mazeIn.Draw();// maze
+           // myPlayer.Draw();//player
         }
     }
 }

@@ -24,8 +24,8 @@ namespace Maze
              |||
              end
              */
-           // if (hasBeenExplored)
-            //{
+            if (hasBeenExplored)
+            {
                 if (door)
                 {
                     Console.Write(" ");
@@ -36,11 +36,11 @@ namespace Maze
                 {
                     Console.Write("|");
                 }
-            //}
-           /* else
+            }
+            else
             {
                 Console.Write("#");
-            }*/
+            }
         }
         public bool IsDoor()
         {
@@ -58,6 +58,15 @@ namespace Maze
         {
             door = false;
         }
+        public bool IsExit()
+        {
+            return exit;
+        }
+        public void SetExit()
+        {
+            exit = true;
+        }
+
 
     }
 }

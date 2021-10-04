@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Console;
 
 namespace Maze
 {
     public class Maze
     {
-        int horizontalStart = 1;
-        int verticalStart = 1;
-        Room[,] myMaze;
+        //int horizontalStart = 1;
+        //int verticalStart = 1;
+        public Room[,] myMaze;
         public Maze()//default maze
         {
             //    myMaze = new Room[4, 4] {
@@ -24,12 +25,26 @@ namespace Maze
                                 { "|", "", "|", "" },
                                 { "|", "", "","" },
                                 { "|", "|","|", "" } }*/
-            myMaze = new Room[4, 4]{
-                            { new Room(false), new Room(false), new Room(false),new Room(false)},
-                            { new Room(false), new Room(true), new Room(false),new Room(false)},
-                            { new Room(false), new Room(true), new Room(true),new Room(false)},
-                            { new Room(false), new Room(false), new Room(false),new Room(false)}};
+             myMaze = new Room[7, 7]{
+                             { new Room(true), new Room(false), new Room(false),new Room(false),new Room(false), new Room(false), new Room(false)},
+                             { new Room(true), new Room(true), new Room(true),new Room(false), new Room(true), new Room(false), new Room(false)},
+                             { new Room(true), new Room(true), new Room(false),new Room(false),new Room(true), new Room(true), new Room(true)},
+                             { new Room(true), new Room(true), new Room(false),new Room(true),new Room(false), new Room(true), new Room(false)},
+                             { new Room(true), new Room(true), new Room(true),new Room(true),new Room(true), new Room(true), new Room(false)},
+                             { new Room(false), new Room(true), new Room(false),new Room(false),new Room(false), new Room(true), new Room(false)},
+                             { new Room(false), new Room(false), new Room(false),new Room(false),new Room(false), new Room(false), new Room(false)}};
+             myMaze[2, 6].SetExit();/*
+            myMaze = new Room[7, 7]{
+                            { new Room(true), new Room(true), new Room(true),new Room(true),new Room(true), new Room(true), new Room(true)},
+                            { new Room(true), new Room(true), new Room(true),new Room(true), new Room(true), new Room(true), new Room(true)},
+                            { new Room(true), new Room(true), new Room(true),new Room(true),new Room(true), new Room(true), new Room(true)},
+                            { new Room(true), new Room(true), new Room(true),new Room(true),new Room(true), new Room(true), new Room(true)},
+                            { new Room(true), new Room(true), new Room(true),new Room(true),new Room(true), new Room(true), new Room(true)},
+                            { new Room(true), new Room(true), new Room(true),new Room(true),new Room(true), new Room(true), new Room(true)},
+                            { new Room(true), new Room(true), new Room(true),new Room(true),new Room(true), new Room(true), new Room(true)}};
+            myMaze[2, 6].SetExit();*/
         }
+    
         public Maze(int size)
         {
             if(size <0)
@@ -71,6 +86,7 @@ namespace Maze
              ||||  XXXX
             */
             int N = myMaze.GetLength(0);
+            /*
             for (int i = 0; i < N; i++)
             {
                 for(int j = 0; j < N; j++)
@@ -78,8 +94,45 @@ namespace Maze
                     myMaze[i, j].Display();
                 }
                 Console.WriteLine();
+            }*/
+            for (int y = 0; y < N; y++)
+            {
+                for (int x = 0; x < N; x++)
+                {
+                    string element = "$";
+                    if (myMaze[y, x].IsDoor())
+                    {
+                        element = " ";
+
+                        Console.SetCursorPosition(x, y);
+                        if (myMaze[y, x].IsExit())
+
+                        {
+                            element = "X";
+                            ForegroundColor = ConsoleColor.Green;
+                        }
+                        else
+                        {
+                            ForegroundColor = ConsoleColor.White;
+                        }
+                    }
+                    else
+                    {
+                        element = "|";
+                    }
+                    Console.Write(element);
+                }
             }
 
+        }
+        public bool IsPositionWalkable(int x, int y)
+        {
+            int size = myMaze.GetLength(0);
+            if (x < 0 || y < 0 || x >= size || y >= size)
+            {
+                return false;
+            }
+            return myMaze[y,x].IsDoor();
         }
 
 
