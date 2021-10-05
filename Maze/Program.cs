@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Maze
+namespace MazeConsole
 {
     class Program
     {

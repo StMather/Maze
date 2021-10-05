@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Maze
+namespace MazeConsole
 {
    public class Room
     {
@@ -19,7 +19,7 @@ namespace Maze
         public Room(bool doorIn, bool explored)
         {
             door = doorIn;
-            hasBeenExplored = true;
+            hasBeenExplored = explored;
         }
         public bool IsDoor()
         {
