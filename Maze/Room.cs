@@ -50,6 +50,10 @@ namespace Maze
         {
             hasBeenExplored = true;
         }
+        public bool IsExplored()
+        {
+            return hasBeenExplored;
+        }
         public void SetDoor()
         {
             door = true;

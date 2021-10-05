@@ -99,28 +99,37 @@ namespace Maze
             {
                 for (int x = 0; x < N; x++)
                 {
+                    Console.SetCursorPosition(x, y);
                     string element = "$";
-                    if (myMaze[y, x].IsDoor())
+                    if (myMaze[y, x].IsExplored())
                     {
-                        element = " ";
-
-                        Console.SetCursorPosition(x, y);
-                        if (myMaze[y, x].IsExit())
-
+                        if (myMaze[y, x].IsDoor())
                         {
-                            element = "X";
-                            ForegroundColor = ConsoleColor.Green;
+                            element = " ";
+
+
+                            if (myMaze[y, x].IsExit())
+
+                            {
+                                element = "X";
+                                ForegroundColor = ConsoleColor.Green;
+                            }
+                            else
+                            {
+                                ForegroundColor = ConsoleColor.White;
+                            }
                         }
                         else
                         {
-                            ForegroundColor = ConsoleColor.White;
+                            element = "|";
                         }
+                       
                     }
                     else
                     {
-                        element = "█";
+                        element = "#";
                     }
-                    Console.Write(element);
+                        Console.Write(element);
                 }
             }
 
@@ -132,6 +141,7 @@ namespace Maze
             {
                 return false;
             }
+            myMaze[y, x].ExploreRoom();
             return myMaze[y,x].IsDoor();
         }
 
