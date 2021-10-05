@@ -9,22 +9,10 @@ namespace Maze
 {
     public class Maze
     {
-        //int horizontalStart = 1;
-        //int verticalStart = 1;
+        
         public Room[,] myMaze;
         public Maze()//default maze
         {
-            //    myMaze = new Room[4, 4] {
-            //    { new Room(false, true, false, true, false), new Room(false, true, true, true, false), new Room(false, true, false, true, false), new Room(false, true, false, false, false) },
-            //    { new Room(false, true, false, true, false), new Room(false, true, false, true, false), new Room(false, true, false, true, false), new Room(false, true, false, false, false) },
-            //    { new Room(false, true, false, true, false), new Room(false, true, false, true, false), new Room(false, true, false, true, false), new Room(false, true, false, false, false)},
-            //    { new Room(false, false, false, true, false), new Room(false, false, false, true, false), new Room(false, false, false, true, false), new Room(false, false, false, false, false)}};
-
-
-            /*string[,] grid ={   { "|", "|", "|", "|"},
-                                { "|", "", "|", "" },
-                                { "|", "", "","" },
-                                { "|", "|","|", "" } }*/
              myMaze = new Room[7, 7]{
                              { new Room(true), new Room(false), new Room(false),new Room(false),new Room(false), new Room(false), new Room(false)},
                              { new Room(true), new Room(true), new Room(true),new Room(false), new Room(true), new Room(false), new Room(false)},
@@ -33,18 +21,21 @@ namespace Maze
                              { new Room(true), new Room(true), new Room(true),new Room(true),new Room(true), new Room(true), new Room(false)},
                              { new Room(false), new Room(true), new Room(false),new Room(false),new Room(false), new Room(true), new Room(false)},
                              { new Room(false), new Room(false), new Room(false),new Room(false),new Room(false), new Room(false), new Room(false)}};
-             myMaze[2, 6].SetExit();/*
-            myMaze = new Room[7, 7]{
-                            { new Room(true), new Room(true), new Room(true),new Room(true),new Room(true), new Room(true), new Room(true)},
-                            { new Room(true), new Room(true), new Room(true),new Room(true), new Room(true), new Room(true), new Room(true)},
-                            { new Room(true), new Room(true), new Room(true),new Room(true),new Room(true), new Room(true), new Room(true)},
-                            { new Room(true), new Room(true), new Room(true),new Room(true),new Room(true), new Room(true), new Room(true)},
-                            { new Room(true), new Room(true), new Room(true),new Room(true),new Room(true), new Room(true), new Room(true)},
-                            { new Room(true), new Room(true), new Room(true),new Room(true),new Room(true), new Room(true), new Room(true)},
-                            { new Room(true), new Room(true), new Room(true),new Room(true),new Room(true), new Room(true), new Room(true)}};
-            myMaze[2, 6].SetExit();*/
+             myMaze[2, 6].SetExit();
         }
-    
+        public Maze(bool explored)//default maze explored
+        {
+            myMaze = new Room[7, 7]{
+                             { new Room(true,explored), new Room(false, explored), new Room(false, explored),new Room(false, explored),new Room(false, explored), new Room(false, explored), new Room(false, explored)},
+                             { new Room(true,explored), new Room(true,explored), new Room(true,explored),new Room(false, explored), new Room(true,explored), new Room(false, explored), new Room(false, explored)},
+                             { new Room(true,explored), new Room(true,explored), new Room(false, explored),new Room(false, explored),new Room(true,explored), new Room(true,explored), new Room(true,explored)},
+                             { new Room(true,explored), new Room(true,explored), new Room(false, explored),new Room(true,explored),new Room(false, explored), new Room(true,explored), new Room(false, explored)},
+                             { new Room(true,explored), new Room(true,explored), new Room(true,explored),new Room(true,explored),new Room(true, explored), new Room(true,explored), new Room(false, explored)},
+                             { new Room(false, explored), new Room(true,explored), new Room(false, explored),new Room(false, explored),new Room(false, explored), new Room(true,explored), new Room(false, explored)},
+                             { new Room(false, explored), new Room(false, explored), new Room(false, explored),new Room(false, explored),new Room(false, explored), new Room(false, explored), new Room(false, explored)}};
+            myMaze[2, 6].SetExit();
+        }
+
         public Maze(int size)
         {
             if(size <0)
@@ -79,22 +70,13 @@ namespace Maze
         }
         public void DisplayMaze()//walk trhough maze and display rooms in the maze
         {
-            /*example room
+            /*example maze
              ||||  XXXX
              | ||  X XX
              |O |  XO X 
              ||||  XXXX
             */
             int N = myMaze.GetLength(0);
-            /*
-            for (int i = 0; i < N; i++)
-            {
-                for(int j = 0; j < N; j++)
-                {
-                    myMaze[i, j].Display();
-                }
-                Console.WriteLine();
-            }*/
             for (int y = 0; y < N; y++)
             {
                 for (int x = 0; x < N; x++)
@@ -121,7 +103,7 @@ namespace Maze
                         }
                         else
                         {
-                            element = "|";
+                            element = "█";
                         }
                        
                     }

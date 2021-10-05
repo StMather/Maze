@@ -16,31 +16,10 @@ namespace Maze
         {
             door = doorIn;
         }
-        public void Display()
+        public Room(bool doorIn, bool explored)
         {
-            /*example room
-             |||
-             | |
-             |||
-             end
-             */
-            if (hasBeenExplored)
-            {
-                if (door)
-                {
-                    Console.Write(" ");
-                    //for player location, need logic
-                    //Console.Write("O");
-                }
-                else
-                {
-                    Console.Write("|");
-                }
-            }
-            else
-            {
-                Console.Write("#");
-            }
+            door = doorIn;
+            hasBeenExplored = true;
         }
         public bool IsDoor()
         {
