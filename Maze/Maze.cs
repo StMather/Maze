@@ -118,7 +118,7 @@ namespace Maze
                     }
                     else
                     {
-                        element = "|";
+                        element = "█";
                     }
                     Console.Write(element);
                 }

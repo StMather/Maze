@@ -11,6 +11,9 @@ namespace Maze
     {
         public void MainMenu()
         {
+
+            Title = "welcome to the Maze!";
+            CursorVisible = false;
             int choice = 0;
             do
             {
